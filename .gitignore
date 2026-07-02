@@ -89,5 +89,5 @@ requirements.mi-fgsm.txt
 # --- Whitelist placeholder files --------------------------------------------
 !data/unipen/.gitkeep
 !data/casia/.gitkeep
-!pretrained/.gitkeep
+!checkpoints/.gitkeep
 !assets/.gitkeep

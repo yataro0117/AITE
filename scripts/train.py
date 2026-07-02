@@ -38,7 +38,7 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Path to a YAML config file. Defaults to configs/<dataset>.yaml.",
     )
-    parser.add_argument("--save_dir", type=str, default="pretrained/", help="Checkpoint directory.")
+    parser.add_argument("--save_dir", type=str, default="checkpoints/", help="Checkpoint directory.")
     parser.add_argument("--epochs", type=int, default=None, help="Override epoch count from config.")
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--lr", type=float, default=None, help="Override learning rate from config.")

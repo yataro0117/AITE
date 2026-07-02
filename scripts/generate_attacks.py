@@ -4,10 +4,10 @@
 Usage examples::
 
     python scripts/generate_attacks.py --dataset unipen_1a --attack aite \\
-        --checkpoint pretrained/unipen_1a_cnn3_best.pt --indices 0 5 10
+        --checkpoint checkpoints/unipen_1a_cnn3_best.pt --indices 0 5 10
 
     python scripts/generate_attacks.py --dataset casia --attack fgsm \\
-        --checkpoint pretrained/casia_cnn1d_best.pt --split test
+        --checkpoint checkpoints/casia_cnn1d_best.pt --split test
 """
 
 from __future__ import annotations

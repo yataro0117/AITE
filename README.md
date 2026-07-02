@@ -61,11 +61,11 @@ print(f"Attack finished in {len(history)} steps")
 ```
 
 To reproduce the paper's results, load the released checkpoints instead of using
-random weights (see [`pretrained/README.md`](pretrained/README.md)):
+random weights (see [`checkpoints/README.md`](checkpoints/README.md)):
 
 ```python
 import torch
-model.load_state_dict(torch.load("pretrained/unipen/cnn3_1a.pt", map_location="cpu"))
+model.load_state_dict(torch.load("checkpoints/unipen/cnn3_1a.pt", map_location="cpu"))
 ```
 
 ---

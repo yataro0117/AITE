@@ -1,15 +1,21 @@
-# Pretrained Weights
+# Model Checkpoints
 
-Pretrained model weights are **not** included in this repository. They will
-be released via **[GitHub Releases](https://github.com/yataro0117/AITE/releases)**
-(TODO: upload after paper publication).
+This directory holds model weights. Two sources populate it:
+
+* **Released pretrained weights** — trained checkpoints from the paper, published
+  via **[GitHub Releases](https://github.com/yataro0117/AITE/releases)**
+  (TODO: upload after paper publication). Not included in the repository.
+* **Locally trained checkpoints** — `scripts/train.py` saves here by default
+  (`--save_dir checkpoints/`).
+
+Weight files (`*.pt`) are git-ignored; only this README and `.gitkeep` are tracked.
 
 ## Expected layout
 
 After downloading and unzipping the release archive:
 
 ```
-pretrained/
+checkpoints/
 ├── unipen/
 │   ├── cnn3_{1a,1b,1c}.pt
 │   ├── cnn4_{1a,1b,1c}.pt
@@ -29,7 +35,7 @@ import torch
 from aite.models.unipen import get_unipen_model
 
 model = get_unipen_model("cnn3", dataset="1a")
-model.load_state_dict(torch.load("pretrained/unipen/cnn3_1a.pt", map_location="cpu"))
+model.load_state_dict(torch.load("checkpoints/unipen/cnn3_1a.pt", map_location="cpu"))
 model.eval()
 ```
 

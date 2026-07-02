@@ -9,9 +9,9 @@ Usage example::
     python scripts/evaluate_transfer.py \\
         --dataset unipen_1a \\
         --attack aite \\
-        --source_checkpoint pretrained/unipen_1a_cnn3_best.pt \\
-        --target_checkpoints pretrained/unipen_1a_cnn4_best.pt \\
-                             pretrained/unipen_1a_blstm2_best.pt \\
+        --source_checkpoint checkpoints/unipen_1a_cnn3_best.pt \\
+        --target_checkpoints checkpoints/unipen_1a_cnn4_best.pt \\
+                             checkpoints/unipen_1a_blstm2_best.pt \\
         --adv_dir results/adversarial_samples/unipen_1a/aite
 """
 
