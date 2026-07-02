@@ -40,7 +40,9 @@ pip install -e ".[dev]"
 
 ## Quickstart (Minimal Working Example)
 
-Run AITE on a single Unipen sample without any dataset:
+Run AITE on a single Unipen sample without any dataset or pretrained weights.
+`get_unipen_model` returns a ready-to-use (randomly initialized) network, so this
+example runs out of the box:
 
 ```python
 import numpy as np
@@ -48,15 +50,22 @@ from aite.attacks.aite import aite_unipen
 from aite.models.unipen import get_unipen_model
 
 model = get_unipen_model("cnn3", dataset="1a")
-model.load_state_dict(__import__("torch").load("pretrained/unipen/cnn3_1a.pt"))
-model.eval()
+model.eval()  # random weights — fine for a smoke test of the attack loop
 
 # Random trajectory (T=50, 2D coordinates in [-1, 1])
 x = np.random.uniform(-1, 1, (50, 2)).astype(np.float32)
 y = 0  # ground-truth label
 
 x_adv, history = aite_unipen(x, y, model, max_iter=100)
-print(f"Attack succeeded in {len(history)} steps")
+print(f"Attack finished in {len(history)} steps")
+```
+
+To reproduce the paper's results, load the released checkpoints instead of using
+random weights (see [`pretrained/README.md`](pretrained/README.md)):
+
+```python
+import torch
+model.load_state_dict(torch.load("pretrained/unipen/cnn3_1a.pt", map_location="cpu"))
 ```
 
 ---
