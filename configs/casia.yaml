@@ -1,0 +1,24 @@
+# Hyperparameters for CASIA-OLHWDB1.1 (Chinese handwriting)
+dataset: casia
+
+# Gradient-based baseline attacks
+eps: 0.03
+eps_iter: 0.001
+nb_iter: 400
+
+# Carlini-Wagner
+cw_binary_search_steps: 3
+cw_max_iterations: 200
+cw_learning_rate: 0.01
+cw_confidence: 0.0
+
+# AITE
+aite_max_iter: 400
+aite_n_del: 1
+aite_n_add: 1
+
+# Training defaults
+batch_size: 32
+epochs: 80
+lr: 0.001
+weight_decay: 0.0001

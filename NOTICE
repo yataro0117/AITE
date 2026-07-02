@@ -1,0 +1,86 @@
+AITE: Adversarial Iterative Temporal Editing
+Copyright 2026 Yataro Tamura and contributors, Kyushu University
+
+This product is licensed under the Apache License, Version 2.0
+(see the LICENSE file).
+
+================================================================
+Third-party code, datasets, and references
+================================================================
+
+1. CleverHans (TensorFlow 2 and PyTorch attack implementations)
+   ----------------------------------------------------------------
+   Vendored under:
+     attacks/cleverhans_tf2_copy/     (FGSM, BIM, PGD, CW-L2, SPSA, Madry, ...)
+     attacks/cleverhans_torch_copy/   (FGSM, BIM, PGD, CW-L2, MI / NI / 1D-TI-MI FGSM)
+   Original project: https://github.com/cleverhans-lab/cleverhans
+   License: MIT
+   Notes:
+     - Subsets of the CleverHans attacks are vendored with minor adaptations
+       for 2D pen-trajectory inputs in the range [-1, 1].
+     - Original copyright notices are retained inside each vendored file.
+     - The flat re-export files at attacks/{fgsm,bim,pgd,cw_l2,...}_tf.py and
+       attacks/{fgsm,bim,pgd,cw_l2,mi_fgsm,ni_fgsm,ti_mi_fgsm_1d}_torch.py
+       only re-export public symbols; they do not modify algorithm logic.
+
+2. Grad-CAM++ (adapted for 1D Conv on pen trajectories)
+   ----------------------------------------------------------------
+   Adaptation under:
+     xai/gradcam/gradcam_unipen.py                       (legacy/xai/, retained)
+     attacks/tamura_method/aite.py                       (signed Grad-CAM)
+     attacks/tamura_method/aite_casia_cnn1d.py           (PyTorch port)
+   Reference: Chattopadhyay et al., "Grad-CAM++: Generalized Gradient-based
+              Visual Explanations for Deep Convolutional Networks", WACV 2018.
+   Notes:
+     - The "signed" variant used by AITE removes the trailing ReLU so that
+       negative contributions are kept.
+     - Adapted to operate on Conv1D feature maps over pen trajectories.
+
+3. LIME (adapted for time-series segments)
+   ----------------------------------------------------------------
+   Adaptation under:
+     xai/lime/lime_unipen.py                              (legacy/xai/, retained)
+   Original project: https://github.com/marcotcr/lime
+   License: BSD-2-Clause
+   Notes:
+     - Segment-based perturbation strategy was adapted for 2D pen
+       trajectories. LIME-based attack scripts are retained in legacy/ for
+       reference and are not part of the paper's reported results.
+
+4. MI-FGSM / NI-FGSM / 1D-TI-MI-FGSM (transfer-based black-box baselines)
+   ----------------------------------------------------------------
+   References:
+     - MI-FGSM       : Dong et al., "Boosting Adversarial Attacks with
+                       Momentum", CVPR 2018.
+     - NI-FGSM       : Lin et al., "Nesterov Accelerated Gradient and Scale
+                       Invariance for Adversarial Attacks", ICLR 2020.
+     - 1D-TI-MI-FGSM : Wang et al. (2022) 1D adaptation of the
+                       Translation-Invariant MI-FGSM for time-series.
+   Notes:
+     - The TensorFlow stand-alone implementations under
+       attacks/blackbox_attack/One-shot transfer black-box attacks/ are
+       original to this work.
+     - The PyTorch counterparts are vendored from CleverHans-derived code
+       under attacks/cleverhans_torch_copy/ and obey the upstream MIT terms.
+
+5. Datasets (NOT redistributed in this repository)
+   ----------------------------------------------------------------
+   - UNIPEN
+       https://www.unipen.org/
+       Obtained from the Unipen consortium; subject to the consortium's
+       terms of use.
+   - CASIA-OLHWDB
+       http://www.nlpr.ia.ac.cn/databases/handwriting/Home.html
+       Obtained from the CASIA web page; subject to CASIA's research-use
+       license.
+
+   Please consult the original licensors for terms of use. The repository
+   only contains placeholder directories (data/unipen/, data/casia/) and
+   loader code; the raw data files are not included.
+
+6. Temporal smoothness metric
+   ----------------------------------------------------------------
+   Reference: Pialla et al., "Smoothness Metrics for Adversarial Time-Series
+              Generation", 2023.
+   Implementation: experiments/smoothness.py (mean second-order finite
+              difference).

@@ -1,0 +1,93 @@
+# =============================================================================
+# AITE — .gitignore
+# =============================================================================
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+.ipynb_checkpoints/
+build/
+dist/
+
+# --- OS / editors ------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+.codex
+.claude/
+
+# --- Conda / venv ------------------------------------------------------------
+.venv/
+env/
+venv/
+.env
+
+# --- Weights / checkpoints (released separately via Zenodo / HF Hub) --------
+*.h5
+*.weights.h5
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.joblib
+
+# --- Data arrays / caches ----------------------------------------------------
+*.npy
+*.npz
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# --- Datasets (large, distributed by upstream licensors) --------------------
+data/Unipen/*.txt
+data/unipen/*.txt
+CASIA/casia/raw/
+CASIA/casia/processed/
+
+# --- Pretrained model directories (root-level only) -------------------------
+/models/
+/models_2/
+/models_3/
+/models_4/
+CASIA/checkpoints/
+
+# --- Generated results / logs -----------------------------------------------
+results/
+logs/
+outputs/
+runs/
+run_log.txt
+raw-train-data-*.txt
+raw-test-data-*.txt
+training/logs/
+CASIA/runs/
+
+# --- Paper source (not part of code release) --------------------------------
+paper/
+
+# --- Auxiliary datasets -----------------------------------------------------
+mcyt_signature/
+
+# --- Legacy / excluded development trees ------------------------------------
+legacy/
+excluded/
+
+# --- TensorFlow / Keras (PyTorch-only release) ------------------------------
+*_tf.py
+attacks/cleverhans_tf2_copy/
+environment.yml
+environment.mi-fgsm.yml
+requirements.mi-fgsm.txt
+
+# --- Whitelist placeholder files --------------------------------------------
+!data/unipen/.gitkeep
+!data/casia/.gitkeep
+!pretrained/.gitkeep
+!assets/.gitkeep

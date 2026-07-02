@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "AITE: Adversarial Iterative Temporal Editing for Online Handwriting"
+type: software
+authors:
+  - family-names: "Tamura"
+    given-names: "Yataro"
+    affiliation: "Kyushu University"
+    # orcid: "https://orcid.org/TODO"
+  # TODO: add co-authors in final order before camera-ready
+license: Apache-2.0
+repository-code: "https://github.com/TODO/AITE"  # TODO: update once published
+# doi: "TODO"                                     # TODO: update after Zenodo release
+preferred-citation:
+  type: conference-paper
+  title: "Adversarial Attacks on Online Handwriting using Salience-based Temporal Editing"
+  authors:
+    - family-names: "Tamura"
+      given-names: "Yataro"
+      affiliation: "Kyushu University"
+    # TODO: add co-authors in final order before camera-ready
+  conference:
+    name: "International Conference on Document Analysis and Recognition (ICDAR)"
+  year: 2026
+  # doi: "TODO"     # TODO: update once camera-ready DOI is assigned
+  # url: "TODO"     # TODO: arXiv link once preprint posted
