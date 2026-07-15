@@ -6,7 +6,9 @@ Each iteration:
   1. Compute a salience map ``cam[T]`` via ``salience_fn``.
   2. Delete the ``n_del`` highest-salience interior points.
   3. Insert midpoints at the ``n_add`` lowest-salience intervals.
-  4. (Unipen only) Resample back to the fixed target length.
+  4. (Unipen only) Resample back to the fixed target length.  This is a no-op
+     while ``n_del == n_add`` (deletions and insertions cancel, so the length
+     is preserved); it only changes the trajectory when ``n_del != n_add``.
   5. Repeat until misclassification or ``max_iter`` is reached.
 
 Public API
@@ -109,6 +111,9 @@ def run_aite(
     n_add        : Midpoints to insert per step (lowest CAM intervals).
     fixed_length : If not ``None``, resample back to this length after every
                    step (use for Unipen with fixed T; leave ``None`` for CASIA).
+                   Only has an effect when ``n_del != n_add``; with the default
+                   ``n_del == n_add`` each step is length-preserving and the
+                   resample is a no-op.
     verbose      : Print per-step progress to stdout.
 
     Returns
